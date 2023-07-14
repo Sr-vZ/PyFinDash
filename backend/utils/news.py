@@ -40,13 +40,37 @@ def money_control_news():
 
     json_op = []
     for nd in news_divs:
-        h = nd.find("h2").text.strip()
-        d = nd.find("span").text.strip()
-        p = nd.find("p").text.strip()
-        json_op.append({"date": d, "title": h, "description": p})
+        title = nd.find("h2").text.strip()
+        date = nd.find("span").text.strip()
+        desc = nd.find("p").text.strip()
+        json_op.append({"date": date, "title": title, "description": desc})
         # print(f"{d}\t{h}\t{p}")
 
     return json_op
 
 
-print(money_control_news())
+# print(money_control_news())
+
+
+def pulse_zerodha():
+    url = "https://pulse.zerodha.com/"
+
+    # Choose a random user agent from the list for each request
+    headers = {"User-Agent": random.choice(user_agents)}
+
+    # Send a GET request to the URL and parse the response with BeautifulSoup
+    response = requests.get(url, headers=headers)
+    soup = BeautifulSoup(response.content, "html.parser")
+    # news articles have id=item-xxxxx format
+    news_divs = soup.find("body").find_all(id=re.compile("^item-"))
+
+    json_op = []
+    for nd in news_divs:
+        title = nd.find("h2").text.strip()
+        date = nd.find("span", "date")["title"].strip()
+        desc = nd.find("div", "desc").text.strip()
+        json_op.append({"date": date, "title": title, "description": desc})
+        print(f"{date}\t{title}\t{desc}")
+
+
+# pulse_zerodha()
