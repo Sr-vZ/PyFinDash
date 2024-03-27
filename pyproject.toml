@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "pyfindash"
+version = "0.1.0"
+description = "Python Financial Dashboard"
+authors = ["SrvZ"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.95.1"
+requests = "^2.31.0"
+uvicorn = "^0.21.1"
+Jinja2 = "^3.1.2"
+sse-starlette = "2.0.0"
+fastapi-utils = "0.2.1"
+bs4 = "^0.0.2"
+nsepython = "^2.8"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+mypy = "^1.2.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
