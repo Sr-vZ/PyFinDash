@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from utils.stockedge import get_major_nse_indices, get_trending_stocks
 from utils.news import money_control_news
-from utils.nsedata import get_ohlc_data
+from utils.nsedata import get_ohlc_data, get_nse_index_data, nse_get_index_quote
 import json
 
 app = FastAPI()
@@ -38,3 +38,7 @@ async def trending_news():
 async def nse_data():
     nse_data = get_ohlc_data("SBIN", "EQ")  
     return nse_data.to_csv()
+
+@app.get("/nseindices")
+async def nse_index_data():
+    return nse_get_index_quote("nifty bank")

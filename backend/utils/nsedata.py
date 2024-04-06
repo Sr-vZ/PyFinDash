@@ -17,3 +17,9 @@ def get_ohlc_data(symbol, series, start_date=None, end_date=None):
     df = equity_history(symbol, series, start_date, end_date)
     
     return df
+
+def get_nse_index_data():
+    return nse_index()
+
+def get_nse_index_quote(symbol):
+    return nse_get_index_quote(symbol)
